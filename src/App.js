@@ -1,25 +1,43 @@
-import logo from "./logo.svg";
 import "./App.scss";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import CountryDetail from "./pages/CountryDetail";
+import { getAllCountries } from "./api/countryService";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [countries, setCountries] = useState([]);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    getAllCountries().then((result) => {
+      setIsLoaded(true);
+      setCountries(result);
+    });
+  }, [setCountries]);
+
+  if (!isLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home countries={countries} />
+          </Route>
+          <Route exact path="/:countryCode">
+            <CountryDetail countries={countries} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;
