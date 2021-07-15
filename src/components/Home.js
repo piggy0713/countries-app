@@ -1,24 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.scss";
 import { HiSearch } from "react-icons/hi";
 import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
 
 const Home = ({ countries }) => {
+  const [region, setRegion] = useState("");
+  const [filteredCountry, setFilteredCountry] = useState("");
+  const [searchParam] = useState(["capital", "name"]);
+  const handleChangeReg = (e) => {
+    setRegion(e.target.value);
+  };
+  const handleChangeCountry = (e) => {
+    setFilteredCountry(e.target.value);
+  };
+
+  const search = (items) => {
+    return items.filter((item) => {
+      return searchParam.some((newItem) => {
+        return (
+          item[newItem]
+            .toString()
+            .toLowerCase()
+            .indexOf(filteredCountry.toLowerCase()) > -1
+        );
+      });
+    });
+  };
+
   return (
     <div className="homeContainer">
       <div className="homeNav">
         <div className="searchContainer">
           <HiSearch className="icon" />
-          <input type="text" placeholder="Search for a country..." />
+          <input
+            type="text"
+            placeholder="Search for a country..."
+            onChange={handleChangeCountry}
+            value={filteredCountry}
+          />
         </div>
 
-        <div className="filterContainer">filter</div>
+        <div className="filterContainer">
+          <select className="regionSelector" onChange={handleChangeReg}>
+            <option value="">Filter by Region</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
       </div>
       <div className="countryList">
-        {countries
+        {search(countries)
           .filter((country) => {
-            return country.region === "Europe";
+            return region === "" || country.region === region;
           })
           .map((country) => (
             <div key={country.alpha3Code} className="country">

@@ -14,11 +14,9 @@ const CountryDetail = ({ countries }) => {
     return <div></div>;
   }
 
-  const borderCountries = thisCountry.borders
-    .map((countryCode) =>
-      countries.find((country) => country.alpha3Code === countryCode)
-    )
-    .map((country) => country.name);
+  const borderCountries = thisCountry.borders.map((countryCode) =>
+    countries.find((country) => country.alpha3Code === countryCode)
+  );
 
   borderCountries.sort();
 
@@ -76,13 +74,13 @@ const CountryDetail = ({ countries }) => {
           </div>
           <div className="bordersContainer">
             <span>Border Countries: </span>
-            <ul>
+            <div className="borders">
               {borderCountries.map((border) => (
-                <li key={border} className="borderCountry">
-                  {border}
-                </li>
+                <div key={border} className="borderCountry">
+                  <Link to={`/${border.alpha3Code}`}>{border.name}</Link>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </div>
