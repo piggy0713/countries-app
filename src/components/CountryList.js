@@ -8,32 +8,32 @@ const CountryList = ({ countries }) => {
     <div className="countryList">
       {countries.map((country) => (
         <div key={country.alpha3Code} className="country">
-          <div
-            className="flagContainer"
-            style={{ backgroundImage: `url(${country.flag})` }}
-          ></div>
-          <div className="countryDesc">
-            <div className="countryName">
-              <Link to={`/${country.alpha3Code}`}>{country.name}</Link>
+          <Link to={`/${country.alpha3Code}`}>
+            <div
+              className="flagContainer"
+              style={{ backgroundImage: `url(${country.flag})` }}
+            ></div>
+            <div className="countryDesc">
+              <div className="countryName">{country.name}</div>
+              <div className="population">
+                <span> Population : </span>
+                <NumberFormat
+                  className="numberFormat"
+                  thousandSeparator={true}
+                  value={country.population}
+                  readOnly
+                />
+              </div>
+              <div className="region">
+                <span>Region : </span>
+                {country.region}
+              </div>
+              <div className="capital">
+                <span>Capital : </span>
+                {country.capital}
+              </div>
             </div>
-            <div className="population">
-              <span> Population : </span>
-              <NumberFormat
-                className="numberFormat"
-                thousandSeparator={true}
-                value={country.population}
-                readOnly
-              />
-            </div>
-            <div className="region">
-              <span>Region : </span>
-              {country.region}
-            </div>
-            <div className="capital">
-              <span>Capital : </span>
-              {country.capital}
-            </div>
-          </div>
+          </Link>
         </div>
       ))}
     </div>
