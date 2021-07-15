@@ -60,7 +60,7 @@ ul {
   background-color: var(--color-header-background);
   border-bottom: 2px solid var(--color-shadow);
 
-  .titile {
+  .title {
     font-weight: 800;
     font-size: 1.2rem;
   }
@@ -251,5 +251,91 @@ ul {
         }
       }
     }
+  }
+}
+
+/* reponsive */
+
+@media screen and (max-width: 991px) and (min-width: 768px) {
+  .homeNav {
+    gap: 30%;
+  }
+  .countryList {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+  .homeNav {
+    gap: 15%;
+  }
+  .countryList {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.2% 5%;
+  }
+
+  .countryContainer {
+    .detailContainer {
+      grid-template-columns: 1fr;
+    }
+    .linkBtn {
+      width: 20%;
+    }
+  }
+
+  .countryText {
+    display: block;
+    div {
+      padding: 1% 0;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .header {
+    padding: 10% 2%;
+    .title {
+      font-size: 1rem;
+    }
+    .themeContainer {
+      font-size: 0.9rem;
+    }
+  }
+
+  .homeNav {
+    grid-template-columns: 1fr;
+    gap: 15%;
+    padding-top: 10%;
+    padding-bottom: 15%;
+  }
+  .countryList {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0.1%;
+  }
+  .filterContainer {
+    width: 50%;
+    margin-top: 5%;
+  }
+
+  .countryContainer {
+    .detailContainer {
+      grid-template-columns: 1fr;
+      .textContainer {
+        .countryText {
+          display: block;
+          div {
+            padding: 1% 0;
+          }
+        }
+      }
+    }
+
+    .linkBtn {
+      width: 30%;
+    }
+  }
+
+  .flag {
+    height: 250px;
   }
 }

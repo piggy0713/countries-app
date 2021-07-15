@@ -5,7 +5,7 @@ import "../App.scss";
 const Header = () => {
   return (
     <div className="header">
-      <div className="titile">Where in the world?</div>
+      <div className="title">Where in the world?</div>
       <Theme />
     </div>
   );
