@@ -1,11 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
 $font: "Nunito Sans", sans-serif;
-$color-background: hsl(0, 0%, 98%);
-$color-text: hsl(200, 15%, 8%);
-$color-input-text: hsl(0, 0%, 52%);
-$color-shadow: rgba(0, 0, 0, 0.1);
-$color-header-background: hsl(0, 0%, 100%);
+:root {
+  --color-background: hsl(0, 0%, 98%);
+  --color-text: hsl(200, 15%, 8%);
+  --color-input-text: hsl(0, 0%, 52%);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-header-background: hsl(0, 0%, 100%);
+}
+
+[data-theme="dark"] {
+  --color-background: hsl(207, 26%, 17%);
+  --color-text: hsl(0, 0%, 100%);
+  --color-input-text: hsl(0, 0%, 100%);
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-header-background: hsl(209, 23%, 22%);
+}
 
 * {
   margin: 0;
@@ -17,7 +27,8 @@ body {
   font-family: $font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-text;
+  color: var(--color-text);
+  background-color: var(--color-background);
 }
 
 a {
@@ -35,7 +46,8 @@ ul {
   border-style: none;
   outline: none;
   width: 40%;
-  color: $color-input-text;
+  background-color: inherit;
+  color: var(--color-input-text);
   font-size: 0.8rem;
   font-family: $font;
 }
@@ -45,8 +57,8 @@ ul {
   display: grid;
   padding: 2% 5%;
   grid-template-columns: 1fr 1fr;
-
-  border-bottom: 2px solid $color-shadow;
+  background-color: var(--color-header-background);
+  border-bottom: 2px solid var(--color-shadow);
 
   .titile {
     font-weight: 800;
@@ -57,6 +69,7 @@ ul {
     justify-content: flex-end;
     font-weight: 600;
     font-size: 1rem;
+    cursor: pointer;
   }
 }
 
@@ -68,7 +81,7 @@ ul {
 
 /* home */
 .homeContainer {
-  background-color: $color-background;
+  background-color: var(--color-background);
   padding: 3% 5%;
 }
 
@@ -80,9 +93,9 @@ ul {
 }
 
 .searchContainer {
-  box-shadow: 0 0 5px 5px $color-shadow;
+  box-shadow: 0 0 5px 5px var(--color-shadow);
   line-height: 40px;
-  background-color: $color-header-background;
+  background-color: var(--color-header-background);
   border-radius: 5px;
   display: grid;
   grid-template-columns: 1fr 8fr;
@@ -90,22 +103,26 @@ ul {
 
   .icon {
     justify-self: center;
-    color: $color-input-text;
+    color: var(--color-input-text);
     cursor: pointer;
   }
 
   input {
     border-style: none;
     outline: none;
-    background-color: $color-header-background;
-    color: $color-input-text;
+    background-color: var(--color-header-background);
+    color: var(--color-input-text);
+  }
+
+  input::placeholder {
+    color: var(--color-input-text);
   }
 }
 
 .filterContainer {
-  box-shadow: 0 0 5px 5px $color-shadow;
+  box-shadow: 0 0 5px 5px var(--color-shadow);
   line-height: 40px;
-  background-color: $color-header-background;
+  background-color: var(--color-header-background);
   border-radius: 5px;
   text-align: center;
 
@@ -114,6 +131,8 @@ ul {
     width: 80%;
     border: 0px;
     outline: 0px;
+    background-color: inherit;
+    color: inherit;
   }
 }
 
@@ -125,7 +144,7 @@ ul {
   .country {
     display: grid;
     grid-template-rows: 1fr 1fr;
-    box-shadow: 0 0 5px 5px $color-shadow;
+    box-shadow: 0 0 5px 5px var(--color-shadow);
     border-radius: 5px;
 
     .flagContainer {
@@ -134,7 +153,7 @@ ul {
     }
 
     .countryDesc {
-      background-color: $color-header-background;
+      background-color: var(--color-header-background);
       padding: 10%;
     }
   }
@@ -149,10 +168,10 @@ ul {
   .region,
   .capital {
     font-size: 0.8rem;
-    color: $color-input-text;
+    color: var(--color-input-text);
     span {
       font-weight: 600;
-      color: $color-text;
+      color: var(--color-text);
     }
   }
 }
@@ -163,19 +182,20 @@ ul {
   padding: 5%;
 
   .linkBtn {
+    background-color: inherit;
     display: flex;
     border-radius: 5px;
-    box-shadow: 0 0 5px 5px $color-shadow;
+    box-shadow: 0 0 5px 5px var(--color-shadow);
     width: 12%;
     justify-content: center;
     font-weight: 600;
     padding: 5px;
     column-gap: 5px;
-    color: $color-text;
+    color: var(--color-text);
 
     .arrow {
       align-self: center;
-      color: $color-text;
+      color: var(--color-text);
     }
   }
 
@@ -200,7 +220,7 @@ ul {
 
         span {
           font-weight: 600;
-          color: $color-text;
+          color: var(--color-text);
         }
         div:nth-child(7) {
           grid-area: 4/1/5/3;
@@ -215,7 +235,7 @@ ul {
 
         span {
           font-weight: 600;
-          color: $color-text;
+          color: var(--color-text);
         }
         .borders {
           display: inline-flex;
@@ -223,7 +243,7 @@ ul {
 
           .borderCountry {
             border-radius: 5px;
-            box-shadow: 0 0 2px 2px $color-shadow;
+            box-shadow: 0 0 2px 2px var(--color-shadow);
             margin: 1%;
             padding: 1%;
           }
