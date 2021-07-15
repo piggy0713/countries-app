@@ -1,56 +1,38 @@
 import React, { useState } from "react";
 import "../App.scss";
-import { HiSearch } from "react-icons/hi";
+import SearchCountry from "./SearchCountry";
+import FilterCountry from "./FilterCountry";
 import NumberFormat from "react-number-format";
 import { Link } from "react-router-dom";
 
 const Home = ({ countries }) => {
   const [region, setRegion] = useState("");
   const [filteredCountry, setFilteredCountry] = useState("");
-  const [searchParam] = useState(["capital", "name"]);
-  const handleChangeReg = (e) => {
-    setRegion(e.target.value);
-  };
+  const searchParam = ["capital", "name"];
   const handleChangeCountry = (e) => {
     setFilteredCountry(e.target.value);
   };
 
-  const search = (items) => {
-    return items.filter((item) => {
-      return searchParam.some((newItem) => {
-        return (
+  const handleChangeReg = (e) => {
+    setRegion(e.target.value);
+  };
+
+  const search = (items) =>
+    items.filter((item) =>
+      searchParam.some(
+        (newItem) =>
           item[newItem]
             .toString()
             .toLowerCase()
             .indexOf(filteredCountry.toLowerCase()) > -1
-        );
-      });
-    });
-  };
+      )
+    );
 
   return (
     <div className="homeContainer">
       <div className="homeNav">
-        <div className="searchContainer">
-          <HiSearch className="icon" />
-          <input
-            type="text"
-            placeholder="Search for a country..."
-            onChange={handleChangeCountry}
-            value={filteredCountry}
-          />
-        </div>
-
-        <div className="filterContainer">
-          <select className="regionSelector" onChange={handleChangeReg}>
-            <option value="">Filter by Region</option>
-            <option value="Africa">Africa</option>
-            <option value="Americas">America</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="Oceania">Oceania</option>
-          </select>
-        </div>
+        <SearchCountry onChange={handleChangeCountry} value={filteredCountry} />
+        <FilterCountry onChange={handleChangeReg} />
       </div>
       <div className="countryList">
         {search(countries)
