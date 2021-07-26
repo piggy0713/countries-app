@@ -1,6 +1,6 @@
 # REST Countries API with color theme switcher
 
-This is a simply project build with REST API and React
+This is a simple project build with REST API and React
 
 ## Table of contents
 
