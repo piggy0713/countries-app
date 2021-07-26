@@ -16,10 +16,9 @@ This is a simple project build with REST API and React
 
 - Live Site URL: (https://countries-rest-api-kimichi.netlify.app/)
 
-## My process
-
 ### Built with
 
 - Semantic HTML5 markup
-- CSS Grid
+- CSS Grid, Theme
 - [React](https://reactjs.org/) - JS library
+- REST API
